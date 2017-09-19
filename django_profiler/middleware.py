@@ -18,9 +18,10 @@ from base64 import b64decode, b64encode
 from django.http import HttpResponse
 from django.middleware.csrf import get_token
 from django.utils import html
+from django.utils.deprecation import MiddlewareMixin
 
 
-class ProfilerMiddleware(object):
+class ProfilerMiddleware(MiddlewareMixin):
     def process_request(self, request):
         self.prof = None
         if '__prof__' in request.GET:
